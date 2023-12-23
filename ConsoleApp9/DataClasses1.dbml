@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="school1" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-2O0E8N7\SQLEXPRESS;Initial Catalog=school1;Integrated Security=True" SettingsObjectName="ConsoleApp9.Properties.Settings" SettingsPropertyName="school1ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.course" Member="courses">
+    <Type Name="course">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NameCourse" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="course_student" Member="students" ThisKey="id" OtherKey="courseid" Type="student" />
+    </Type>
+  </Table>
+  <Table Name="dbo.score" Member="scores">
+    <Type Name="score">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="score" Member="score1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="score_student" Member="students" ThisKey="id" OtherKey="scoreid" Type="student" />
+    </Type>
+  </Table>
+  <Table Name="dbo.student" Member="students">
+    <Type Name="student">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Fullname" Type="System.String" DbType="NChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Gender" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="courseid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="scoreid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="course_student" Member="course" ThisKey="courseid" OtherKey="id" Type="course" IsForeignKey="true" />
+      <Association Name="score_student" Member="score" ThisKey="scoreid" OtherKey="id" Type="score" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
